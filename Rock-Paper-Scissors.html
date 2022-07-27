@@ -8,16 +8,42 @@
 </head>
 <body style="background: #1e1e1e; color: white;">
     <h1>Rock-Paper-Scissors</h1>
+
     <script>
         //Function to return a random choice of rock, paper or scissors for the computer.
         //
         //1. Use Function Declaration and give it name getComputerChoice.
         //2. Create a variable to store a randomly generated number. Create a variable to store computed choice
         //3. Use Math.random() method to generate a random number between 0 and 1.
-        //4. Multiply the outcome by 4 and use Math.floor to round down to the nearest number.
+        //4. Multiply the outcome by 3 and use Math.floor to round down to the nearest number.
         //5. Use an if statement to test if the random number is less than 1, greater than 1 but less than 2, greater than 2 but less than 3.
         //6. For each condition, assign computed choice variable either rock, paper or scissors.
         //7. Return computed choice variable.
+
+        let randomNumber;
+        let computedChoice;
+
+        function getComputerChoice () {
+            randomNumber = Math.floor(Math.random() * 3);
+            
+            switch(randomNumber){
+                case 0:
+                    computedChoice = "Rock";
+                    break;
+                case 1:
+                    computedChoice = "Paper";
+                    break;
+                case 2:
+                    computedChoice = "Scissors";
+                    break;
+                default:
+                    alert("Something went wrong");
+            }
+
+            return computedChoice;
+        }
+        console.log(getComputerChoice());
+
     </script>
 </body>
 </html>
