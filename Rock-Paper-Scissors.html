@@ -10,40 +10,73 @@
     <h1>Rock-Paper-Scissors</h1>
 
     <script>
-        //Function to return a random choice of rock, paper or scissors for the computer.
-        //
-        //1. Use Function Declaration and give it name getComputerChoice.
-        //2. Create a variable to store a randomly generated number. Create a variable to store computed choice
-        //3. Use Math.random() method to generate a random number between 0 and 1.
-        //4. Multiply the outcome by 3 and use Math.floor to round down to the nearest number.
-        //5. Use an if statement to test if the random number is less than 1, greater than 1 but less than 2, greater than 2 but less than 3.
-        //6. For each condition, assign computed choice variable either rock, paper or scissors.
-        //7. Return computed choice variable.
 
-        let randomNumber;
-        let computedChoice;
+        let randomNumber; //Initialize randomNumber variable.
+        let computedChoice; //Initialize computedChoice variable which turns randomNumber into rock, paper or scissors.
 
+        // Not necessary to be honest but helps avoid spelling and syntax issues on all dependencies
+        let rock = "rock";
+        let paper = "paper";
+        let scissors = "scissors";
+
+        //Function to randomly generate a computer choice.
         function getComputerChoice () {
             randomNumber = Math.floor(Math.random() * 3);
             
             switch(randomNumber){
                 case 0:
-                    computedChoice = "Rock";
+                    computedChoice = rock;
                     break;
                 case 1:
-                    computedChoice = "Paper";
+                    computedChoice = paper;
                     break;
                 case 2:
-                    computedChoice = "Scissors";
+                    computedChoice = scissors;
                     break;
                 default:
-                    alert("Something went wrong");
+                    alert("Oops so buggy");
             }
 
             return computedChoice;
-        }
-        console.log(getComputerChoice());
+        } 
 
+        //Player Input
+        let playerChoice = prompt("Type rock or paper or scissors. \n\nDon't forget to check your spelling 😉").toLowerCase();
+
+        //Function to compare 9 permutations of computer and player inputs.
+        function playRound (playerSelection, computerSelection) {
+
+            //playRound() win, lose and draw messages
+            let win = `🥳 You won! You chose ${playerSelection} and the computer chose ${computerSelection}`;
+            let lose = `😔 Oops You lost! You chose ${playerSelection} and the computer chose ${computerSelection}`;
+            let draw = `✨ Its a draw! You both chose ${playerSelection}`;
+
+            if (playerSelection == rock && computerSelection == rock){
+                return draw;
+            } else if (playerSelection == rock && computerSelection == paper) {
+                return lose;
+            } else if (playerSelection == rock && computerSelection == scissors){
+                return win;
+
+            } else if (playerSelection == paper && computerSelection == paper){
+                return draw;
+            } else if (playerSelection == paper && computerSelection == scissors){
+                return lose;
+            } else if (playerSelection == paper && computerSelection == rock){
+                return win;
+
+            } else if (playerSelection == scissors && computerSelection == scissors){
+                return draw;
+            } else if (playerSelection == scissors && computerSelection == rock){
+                return lose;
+            } else if (playerSelection == scissors && computerSelection == paper){
+                return win;
+
+            } else {
+                return "Refresh the page and check your spelling please";
+            }
+        }
+        
     </script>
 </body>
 </html>
