@@ -52,15 +52,18 @@
         }
     </style>
 </head>
+
 <body>
+
     <h1>Rock Paper Scissors</h1>
     <button onclick="Game()">Let's Play!</button>
     <br>
     <p>Remember to open your browser console.</p>
     <br>
     <br>
-    <p id="restart">Any errors will appear here</p>
+    <p id="restart">Any important errors will appear here</p>
 
+    
     <script>
 
         let randomNumber; //Initialize randomNumber variable.
@@ -120,9 +123,9 @@
             let lose = `😔 Oops You lost! You chose ${playerSelection} and the computer chose ${computerSelection}`;
             let draw = `✨ Its a draw! You both chose ${playerSelection}`;
 
-            if (playerSelection != rock && playerSelection != paper && playerSelection != scissors){
+            if ((playerSelection != rock && playerSelection != paper && playerSelection != scissors)){
                 errorCount++
-                return "Either your spelling was wrong or you entered an unsupported value."
+                return "Either your spelling was wrong; you entered an unsupported value; or you entered no value."
 
             } else if (playerSelection == rock && computerSelection == rock){
                 drawCount++;
@@ -157,13 +160,11 @@
 
         }
         
-        //console.log(playRound(getPlayerChoice(), getComputerChoice()))
-
         //Set number of rounds per game session.
-        let gameRounds = 3;
+        let gameRounds = 5;
+
 
         //Full Game Function.
-
         function Game () {
 
             //Loop to play game (gameRound) number of times and log win, lose and draw counts.
