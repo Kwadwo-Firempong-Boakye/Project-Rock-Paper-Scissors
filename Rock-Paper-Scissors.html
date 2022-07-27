@@ -19,6 +19,9 @@
         let paper = "paper";
         let scissors = "scissors";
 
+        //Player Input
+        let playerChoice = prompt("Type rock or paper or scissors. \n\nDon't forget to check your spelling 😉").toLowerCase();
+
         //Function to randomly generate a computer choice.
         function getComputerChoice () {
             randomNumber = Math.floor(Math.random() * 3);
@@ -39,9 +42,6 @@
 
             return computedChoice;
         } 
-
-        //Player Input
-        let playerChoice = prompt("Type rock or paper or scissors. \n\nDon't forget to check your spelling 😉").toLowerCase();
 
         //Function to compare 9 permutations of computer and player inputs.
         function playRound (playerSelection, computerSelection) {
