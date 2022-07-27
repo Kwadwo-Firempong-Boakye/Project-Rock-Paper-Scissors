@@ -5,12 +5,55 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock-Paper-Scissors</title>
+    <style>
+        body{
+            background: rgb(255, 255, 255);
+            font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        }
+
+        h1{
+            text-align: center;
+            font-size: 70px;
+            font-weight: bold;
+            background: linear-gradient(90deg, hsla(197, 100%, 63%, 1) 0%, hsla(294, 100%, 55%, 1) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin: 50px 10px;
+        }
+
+        button{
+            display: block;
+            margin: auto;
+            color: white;
+            background: #c143ff;
+            border-radius: 10px;
+            border: none;
+            padding: 20px 40px;
+            font-size: 30px;
+            font-weight: bold;
+        }
+
+        p{
+            text-align: center;
+            font-size: 18px;
+            padding: 20px;
+        }
+
+        #restart{
+            color: #c143ff;
+            font-weight: bold;
+            border: 1px solid blue;
+        }
+    </style>
 </head>
-<body style="background: #1e1e1e; color: white;">
-    <h1>Rock-Paper-Scissors</h1>
+<body>
+    <h1>Rock Paper Scissors</h1>
     <button onclick="Game()">Let's Play!</button>
-    <br><br>
-    <p id="restart" style="font-size: 25px; color: pink;"></p>
+    <br>
+    <p>Remember to open your browser console.</p>
+    <br>
+    <br>
+    <p id="restart">Any errors will appear here</p>
 
     <script>
 
@@ -55,7 +98,7 @@
         //Error feedback function for wrongly entered input (!= rock paper or scissors)
         function errorFeedback () {
             let errorText = document.getElementById("restart");
-            errorText.innerHTML = "You spelled your input wrongly. We will reset the page and give you a clean start in 3 seconds";
+            errorText.innerHTML = "You spelled your input wrongly." + "<br><br>" +"We will reset the page and give you a clean start in 5 seconds";
         }
 
         //Restart page function
@@ -126,7 +169,7 @@
                 if (errorCount > 0){
                     console.log("You spelled your input wrongly.")
                     errorFeedback();
-                    setTimeout(restart, 3000);
+                    setTimeout(restart, 5000);
                     return;
                 }
             }
