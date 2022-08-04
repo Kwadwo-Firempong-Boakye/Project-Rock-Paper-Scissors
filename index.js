@@ -1,26 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rock-Paper-Scissors</title>
-    <script src="./index.js" defer></script>
-    <link rel="stylesheet" href="index.css">
-</head>
-
-<body>
-
-    <h1>Rock Paper Scissors</h1>
-    <button onclick="Game()">Let's Play!</button>
-    <br>
-    <p>Remember to open your browser console.</p>
-    <br>
-    <br>
-    <p id="restart">Any important errors will appear here</p>
-
-    
-    <script>
 
         let randomNumber; //Initialize randomNumber variable.
         let computedChoice; //Initialize computedChoice variable which turns randomNumber into rock, paper or scissors.
@@ -151,6 +128,4 @@
             computerWinCount = 0;
             drawCount = 0;
         }
-    </script>
-</body>
-</html>
+    
