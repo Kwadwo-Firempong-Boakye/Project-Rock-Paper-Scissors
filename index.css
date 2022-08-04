@@ -1,7 +1,21 @@
+:root {
+    font-family: 'Source Sans Pro', sans-serif;
+    --ruby-red: #a41623;
+    --carmine: #90141e;
+    --light-coral: #f08080;
+    --yellow: #ffbc42;
+    --honolulu-blue: #006ba6;
+    --dodger-blue: #0496ff;
+    --shadow: #252526;
+    --soft-shadow: #353536;
+    font-size: 16px;
+}
+
+/*
 body{
     background: rgb(255, 255, 255);
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-}
+}*/
 
 h1{
     text-align: center;
