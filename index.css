@@ -44,7 +44,7 @@ html, body {
 }
 
 .score-count {
-    color: var(--yellow);
+    color: var(--light-coral);
     font-size: 2rem;
     font-weight: bold;
     margin: 0;
@@ -73,33 +73,46 @@ html, body {
     padding-bottom: 1rem;
     padding-top: 1rem;
     text-align: center;
-    font-size: 1.4rem;
+    font-size: 1.5rem;
     font-weight: 700;
     font-style: italic;
     text-transform: uppercase;
     position: relative;
+    transition: all 0.5s;
+    opacity: 1;
+}
+
+.youChoseText,
+.robotChoseText {
+    color: var(--light-coral);
+    font-size: 1.8rem;
+
 }
 
 .robot-area p {
-    left: 7vw;
+    left: 3vw;
+    transition: all 1s;
 }
 
 .player-area p {
-    right: 11vw;
+    right: 3vw;
 }
 
-.robo-img {
+.robot-img {
     height: 7rem;
     position: relative;
     left: 0.9vh;
+    transition: all 1s;
+    opacity: 1;
 }
 
 .player-img {
     height: 7rem;
     position: relative;
     right: 0.9vh;
+    transition: all 1s;
+    opacity: 1;
 }
-
 
 .info-area {
     height: 28vh;
@@ -111,16 +124,17 @@ html, body {
     gap: 1.5rem;
 }
 
-.info-area h2,
-.info-area p {
-    margin: 0;
+.heading,
+.info,
+.info-area {
+    margin: 0 auto;
     padding: 0;
+    
 }
 
 .info-area a {
     text-decoration: none;
-    color: var(--light-coral);
-    
+    color: #c6bdf1;
 }
 
 .heading {
@@ -129,7 +143,23 @@ html, body {
     font-size: 2.2rem;
 }
 
-.info-area button {
+.animation-breathe{
+    animation: breathe 1s ease-in-out 0.3s infinite alternate forwards;
+}
+
+@keyframes breathe {
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(5px);
+    }
+    100% {
+        transform: translateY(-5px);
+    }
+}
+
+.start {
     padding: 10px 25px;
     font-size: 1.4rem;
     font-weight: 600;
@@ -140,11 +170,11 @@ html, body {
     box-shadow: 0px 6px 2px #4b36a7;
 }
 
-.info-area button:hover {
+.start:hover {
     background-color: var(--light-coral);
 }
 
-.info-area button:active {
+.start:active {
     transform: translate(0px, 5px);
     box-shadow: 0px 1px 3px #4b36a7;
 }
@@ -197,6 +227,14 @@ html, body {
     font-family: 'Bangers', cursive;
     letter-spacing: 1px;
     margin: 1rem 0;
+}
+
+.display-hide {
+    display: none;
+}
+
+.zero-opacity {
+    opacity: 0;
 }
 
 
