@@ -49,6 +49,15 @@ html, body {
     font-weight: bold;
     margin: 0;
     padding: 0.5rem;
+    transition: all 0.5s ease-in;
+}
+
+.round {
+    color: var(--yellow);
+    font-size: 1.7rem;
+    font-weight: bold;
+    margin: 0;
+    padding: 0.5rem;
 }
 
 .name {
@@ -78,7 +87,7 @@ html, body {
     font-style: italic;
     text-transform: uppercase;
     position: relative;
-    transition: all 0.5s;
+    transition: all 1.5s;
     opacity: 1;
 }
 
@@ -86,12 +95,12 @@ html, body {
 .robotChoseText {
     color: var(--light-coral);
     font-size: 1.8rem;
-
+    transition: all 1s;
 }
 
 .robot-area p {
     left: 3vw;
-    transition: all 1s;
+    transition: all 1.5s;
 }
 
 .player-area p {
@@ -102,7 +111,7 @@ html, body {
     height: 7rem;
     position: relative;
     left: 0.9vh;
-    transition: all 1s;
+    transition: all 0.5s;
     opacity: 1;
 }
 
@@ -110,7 +119,7 @@ html, body {
     height: 7rem;
     position: relative;
     right: 0.9vh;
-    transition: all 1s;
+    transition: all 0.5s;
     opacity: 1;
 }
 
@@ -141,6 +150,8 @@ html, body {
     font-family: 'Bangers', cursive;
     letter-spacing: 1px;
     font-size: 2.2rem;
+    transition: all 1s ease-in-out;
+    opacity: 1;
 }
 
 .animation-breathe{
@@ -184,7 +195,13 @@ html, body {
     font-size: 2rem;
     font-weight: 600;
     font-style: italic;
-    color: var(--light-coral)
+    color: var(--light-coral);
+    transition: all 1s ease-in-out;
+}
+
+.info-result {
+    color: #ffd642;
+    font-size: 2.5rem;
 }
 
 .choices-area {
@@ -203,6 +220,22 @@ html, body {
     background-color: var(--yellow);
     cursor: pointer;
     transition: all 0.2s ease-in-out;
+}
+
+.button-animate {
+    animation: hint 0.35s ease-out 1.5s 2 alternate;
+}
+
+@keyframes hint {
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(10px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
 }
 
 .choices-area button:hover {
@@ -235,6 +268,7 @@ html, body {
 
 .zero-opacity {
     opacity: 0;
+    
 }
 
 

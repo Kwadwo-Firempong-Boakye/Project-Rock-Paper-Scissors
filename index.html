@@ -17,11 +17,14 @@
 
         <div class="score-area">
             <div>
-                <p class="score-count">0</p>
+                <p class="score-count" id="playerScore">0</p>
                 <p class="name">You</p>
             </div>
             <div>
-                <p class="score-count">0</p>
+                <p class="round">Rounds</p>
+            </div>
+            <div>
+                <p class="score-count" id="robotScore">0</p>
                 <p class="name">Robot</p>
             </div>
         </div>
@@ -36,7 +39,7 @@
             <p class="info">You won this round!</p>
             <button class="start">Start</button>
         
-            <a href="https://wrpsa.com/the-official-rules-of-rock-paper-scissors/" target="_blank">Game Rules</a>
+            <a href="https://wrpsa.com/the-official-rules-of-rock-paper-scissors/" target="_blank">First to get 3 points wins! Click for all rules.</a>
         </div>
 
         <div class="player-area">
@@ -46,15 +49,15 @@
 
         <div class="choices-area">
             <div class="select">
-                <button id="rock"><img src="./rock2.png" alt=""></button>
+                <button class="choices" id="rock"><img src="./rock2.png" alt=""></button>
                 <p class="caption">Rock</p>
             </div>
             <div class="select">
-                <button id="paper"><img src="./paper2.png" alt=""></button>
+                <button class="choices" id="paper"><img src="./paper2.png" alt=""></button>
                 <p class="caption">Paper</p>
             </div>
             <div class="select">
-                <button id="scissors"><img src="./scissors2.png" alt=""></button>
+                <button class="choices" id="scissors"><img src="./scissors2.png" alt=""></button>
                 <p class="caption">Scissors</p>
             </div>
         </div>

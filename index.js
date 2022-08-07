@@ -5,6 +5,10 @@ let rock = document.querySelector("#rock");
 let paper = document.querySelector("#paper");
 let scissors = document.querySelector("#scissors")
 let heading = document.querySelector(".heading");
+let roundInfo = document.querySelector(".round");
+let playerScore = document.querySelector("#playerScore");
+let robotScore = document.querySelector("#robotScore");
+let container = document.querySelector(".container");
 
 let youChose = document.querySelector(".youChose");
 let youChoseImage = document.querySelector(".youChose").previousElementSibling;
@@ -20,9 +24,12 @@ let computerSelection;
 
 let playerWinCount = 0;
 let computerWinCount = 0;
-let drawCount = 0;
+playerScore.textContent = playerWinCount;
+robotScore.textContent = computerWinCount;
+//let drawCount = 0;
 
 let gameRounds = 3;
+let round = 1;
 
 
 
@@ -30,6 +37,9 @@ let gameRounds = 3;
 //PRE-GAME-ROUND EVENT LISTENERS
 window.addEventListener("load", disableButton);
 window.addEventListener("load", hideGraphic);
+/*window.addEventListener("load", () => {
+    roundInfo.classList.add("display-hide");
+});*/
 
 start.addEventListener("click", selectStart);
 
@@ -39,13 +49,15 @@ scissors.addEventListener("click", getPlayerChoice);
 
 
 
-
-//FUNCTION TRANSITION EVENT LISTENERS
-youChoseImage.addEventListener("transitionend", getComputerChoice);
+//FUNCTION-TRANSITION EVENT LISTENERS
+youChoseImage.addEventListener("transitionend", () => {
+    setTimeout(getComputerChoice, 500);
+});
 
 robotChoseImage.addEventListener("transitionend", () => {
 playRound(playerSelection, computerSelection);
-start.disable = false;
+setTimeout(Game, 500);
+updateScore();
 });
 
 
@@ -84,28 +96,57 @@ function hideGraphic () {
 //Function to set animations dependent on getPlayerChoice
 function playerChoiceConsequence () {
     disableButton();
-    youChose.classList.add("zero-opacity");
-    youChoseImage.classList.add("zero-opacity")
+
     youChose.classList.remove("display-hide");
     youChoseImage.classList.remove("display-hide");
-    
+    youChose.style.opacity = 0;
+    youChoseImage.style.opacity = 0;
+
     setTimeout(()=>{
-        youChose.classList.remove("zero-opacity");
-        youChoseImage.classList.remove("zero-opacity");
-    }, 1000)
+        youChose.style.opacity = 1;
+        youChoseImage.style.opacity = 1;
+    }, 500)
 }
 
 //Function to set animations dependent on getComputerChoice
 function computerChoiceConsequence () {
-    robotChose.classList.add("zero-opacity");
-    robotChoseImage.classList.add("zero-opacity")
     robotChose.classList.remove("display-hide");
     robotChoseImage.classList.remove("display-hide");
+    robotChose.style.opacity = 0;
+    robotChoseImage.style.opacity = 0;
 
     setTimeout(()=>{
-        robotChose.classList.remove("zero-opacity");
-        robotChoseImage.classList.remove("zero-opacity");
-    }, 1000)
+    robotChose.style.opacity = 1;
+    robotChoseImage.style.opacity = 1;
+    }, 500)
+}
+
+//Function to apply a class that hides an element
+function hide (target) {
+    target.classList.add("display-hide");
+}
+
+//Function to reset essential game variables after each round
+function cleanUp () {
+    youChoseImage.setAttribute("src", "");
+    youChoseText.textContent = "";
+    robotChoseText.textContent = "";
+    robotChoseImage.setAttribute("src", "");
+}
+
+//Function to update scores
+function updateScore () {
+
+    playerScore.style.opacity = 0;
+    robotScore.style.opacity = 0;
+
+    setTimeout(() => {
+        playerScore.textContent = playerWinCount;
+        robotScore.textContent = computerWinCount; 
+        playerScore.style.opacity = 1;
+        robotScore.style.opacity = 1;   
+    } , 1500)   
+
 }
 
 
@@ -115,15 +156,30 @@ function computerChoiceConsequence () {
 
 //Function to instruct player to select button
 function selectStart () {
+    round++; //increment the round number
+    roundInfo.textContent = `Round ${round - 1}`;
+
     enableButton();
+    hideGraphic();
+    cleanUp();
     heading.textContent= "Choose Below";
-    heading.classList.add("animation-breathe");
-    start.disabled = true;
-    
+    heading.classList.toggle("animation-breathe");
+
+    start.classList.add("display-hide");
+    rock.classList.add("button-animate");
+    paper.classList.add("button-animate");
+    scissors.classList.add("button-animate");
 }
 
 //Function to collect player choice.
 function getPlayerChoice (e) {
+
+    heading.style.opacity = 0;
+
+    setTimeout(() => {
+        heading.textContent = "...Aaaand...";
+        heading.style.opacity = 1;
+    }, 700)
 
     if (this.id == "rock") {
         youChoseImage.setAttribute("src", "./player-rock.png");
@@ -137,9 +193,8 @@ function getPlayerChoice (e) {
 
     setTimeout(()=>{
         youChoseText.textContent = this.id;
-    }, 1000)
+    }, 700)
     
-
     playerSelection = this.id;
     return playerSelection;
 }
@@ -165,13 +220,16 @@ function getComputerChoice () {
            alert("Oops so buggy");
    }
 
-   computerChoiceConsequence();
+computerChoiceConsequence();
 
-   setTimeout(()=>{
-        robotChoseText.textContent = computedChoice;
-    }, 1000)
+heading.style.opacity = 0;
+setTimeout(()=>{
+    robotChoseText.textContent = computedChoice;
+    heading.style.opacity = 1;
+}, 1000)
 
    computerSelection = computedChoice;
+
    return computerSelection; 
 } 
 
@@ -183,83 +241,114 @@ function playRound (playerSelection, computerSelection) {
     let lose = "😔 Oops You lost!";
     let draw = "✨ Its a draw!";
 
+    //Reappear and change content of start button
+    start.classList.remove("display-hide");
+
+    heading.style.opacity = 0;
+    setTimeout (() => {
+        heading.classList.add("info-result");
+        heading.style.opacity = 1;
+        start.textContent = `Start Round ${round}`;
+    }, 1200)
+
 
     if (playerSelection == "rock" && computerSelection == "rock") {
-        drawCount++;
+        //drawCount++;
         heading.textContent = draw;
         return draw;
+        playerWinCount += 0;
+        computerWinCount += 0;
 
     } else if (playerSelection == "rock" && computerSelection == "paper") {
         computerWinCount++;
         heading.textContent = lose;
         return lose;
+        playerWinCount += 0;
+        computerWinCount += 1;
 
 
     } else if (playerSelection == "rock" && computerSelection == "scissors"){
         playerWinCount++;
         heading.textContent = win;
         return win;
+        playerWinCount += 1;
+        computerWinCount += 0;
 
     } else if (playerSelection == "paper" && computerSelection == "paper"){
-        drawCount++;
+        //drawCount++;
         heading.textContent = draw;
         return draw;
+        playerWinCount += 0;
 
     } else if (playerSelection == "paper" && computerSelection == "scissors"){
         computerWinCount++;
         heading.textContent = lose;
         return lose;
+        playerWinCount += 0;
+        computerWinCount += 1;
 
     } else if (playerSelection == "paper" && computerSelection == "rock"){
         playerWinCount++;
         heading.textContent = win;
         return win;
+        playerWinCount += 1;
+        computerWinCount += 0;
 
     } else if (playerSelection == "scissors" && computerSelection == "scissors"){
-        drawCount++;
+        //drawCount++;
         heading.textContent = draw;
         return draw;
+        playerWinCount += 0;
 
     } else if (playerSelection == "scissors" && computerSelection == "rock"){
         computerWinCount++;
         heading.textContent = lose;
         return lose;
+        playerWinCount += 0;
+        computerWinCount += 1;
 
     } else if (playerSelection == "scissors" && computerSelection == "paper"){
         playerWinCount++;
         heading.textContent = win;
         return win;
+        playerWinCount += 1;
+        computerWinCount += 0;
     }
-
 }
 
-//console.log(playRound (playerSelection, computerSelection));
-        
+//End Game Function.
+function Game () {
+    if (playerWinCount == 3) {
 
+        console.log("GAME OVER PLAYER WINS");
+        start.classList.remove("display-hide");
 
-        
-        
-       
+        heading.style.opacity = 0;
+    setTimeout (() => {
+        heading.classList.add("info-result");
+        heading.style.opacity = 1;
+        start.textContent = "🎉You are the Champion!🎉";
+        container.style.background = "#5765cd";
+    }, 1500)
 
-        //Full Game Function.
-        function Game () {
+    } else if (computerWinCount == 3) {
 
-            //Loop to play game (gameRound) number of times and log win, lose and draw counts.
-            for (let i = 1; i <= gameRounds; i++) {
+        console.log("GAME OVER COMPUTER WINS");
+        start.classList.remove("display-hide");
 
-                let thisRound = playRound(getPlayerChoice(), getComputerChoice());
-                console.log(thisRound);
+        heading.style.opacity = 0;
+    setTimeout (() => {
+        heading.classList.add("info-result");
+        heading.style.opacity = 1;
+        start.textContent = "😥Just bad luck😥";
+        container.style.background = "#252526";
+    }, 1500)
 
-                if (errorCount > 0){
-                    console.log("You spelled your input wrongly.")
-                    errorFeedback();
-                    setTimeout(restart, 5000);
-                    return;
-                }
-            }
-
+    } else {
+        console.log("KEEP GOING");
+    }        
             //Conditions to determine final game outcome.
-            if (playerWinCount > computerWinCount) {
+           /* if (playerWinCount > computerWinCount) {
                 console.log(`Congratulations! 🥳 Out of ${gameRounds} game rounds, You won ${playerWinCount} and the Computer won ${computerWinCount}. There were ${drawCount} draws`);
             } else if (computerWinCount > playerWinCount) {
                 console.log(`Oops! You lost. 🤪 Out of ${gameRounds} game rounds, You won ${playerWinCount} and the Computer won ${computerWinCount}. There were ${drawCount} draws`);
@@ -270,6 +359,6 @@ function playRound (playerSelection, computerSelection) {
            //Reset Counts
             playerWinCount = 0;
             computerWinCount = 0;
-            drawCount = 0;
+            drawCount = 0;*/
         }
     
