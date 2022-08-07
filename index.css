@@ -267,14 +267,27 @@ html, body {
 }
 
 .zero-opacity {
-    opacity: 0;
+    opacity: 0;  
+}
+
+.reset {
+    padding: 10px 25px;
+    font-size: 1.4rem;
+    font-weight: 600;
+    border-radius: 10px;
+    border: none;
+    background: var(--light-coral);
+    transition: all 0.2s ease-in-out;
+    box-shadow: 0px 6px 2px #4b36a7;
     
 }
 
-
+.reset:hover {
+    background-color: var(--ruby-red);
+}
 
 /*
-body{
+body{oral
     background: rgb(255, 255, 255);
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }

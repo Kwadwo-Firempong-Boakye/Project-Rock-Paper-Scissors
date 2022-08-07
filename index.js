@@ -9,6 +9,7 @@ let roundInfo = document.querySelector(".round");
 let playerScore = document.querySelector("#playerScore");
 let robotScore = document.querySelector("#robotScore");
 let container = document.querySelector(".container");
+let resetButton = document.querySelector(".reset");
 
 let youChose = document.querySelector(".youChose");
 let youChoseImage = document.querySelector(".youChose").previousElementSibling;
@@ -37,6 +38,8 @@ let round = 1;
 //PRE-GAME-ROUND EVENT LISTENERS
 window.addEventListener("load", disableButton);
 window.addEventListener("load", hideGraphic);
+window.addEventListener("load", hide(resetButton));
+
 /*window.addEventListener("load", () => {
     roundInfo.classList.add("display-hide");
 });*/
@@ -60,7 +63,9 @@ setTimeout(Game, 500);
 updateScore();
 });
 
-
+resetButton.addEventListener("click", () => {
+    location.reload();
+})
 
 
 //ACCESSORY FUNCTIONS
@@ -249,7 +254,7 @@ function playRound (playerSelection, computerSelection) {
         heading.classList.add("info-result");
         heading.style.opacity = 1;
         start.textContent = `Start Round ${round}`;
-    }, 1200)
+    }, 1000)
 
 
     if (playerSelection == "rock" && computerSelection == "rock") {
@@ -329,6 +334,7 @@ function Game () {
         heading.style.opacity = 1;
         start.textContent = "🎉You are the Champion!🎉";
         container.style.background = "#5765cd";
+        endGame();
     }, 1500)
 
     } else if (computerWinCount == 3) {
@@ -342,23 +348,18 @@ function Game () {
         heading.style.opacity = 1;
         start.textContent = "😥Just bad luck😥";
         container.style.background = "#252526";
+        endGame();
     }, 1500)
 
     } else {
         console.log("KEEP GOING");
     }        
-            //Conditions to determine final game outcome.
-           /* if (playerWinCount > computerWinCount) {
-                console.log(`Congratulations! 🥳 Out of ${gameRounds} game rounds, You won ${playerWinCount} and the Computer won ${computerWinCount}. There were ${drawCount} draws`);
-            } else if (computerWinCount > playerWinCount) {
-                console.log(`Oops! You lost. 🤪 Out of ${gameRounds} game rounds, You won ${playerWinCount} and the Computer won ${computerWinCount}. There were ${drawCount} draws`);
-            } else {
-                console.log(`Its a tie! 🤷 Out of ${gameRounds} game rounds, You won ${playerWinCount} and the Computer won ${computerWinCount}. There were ${drawCount} draws`);
-           }
+}
 
-           //Reset Counts
-            playerWinCount = 0;
-            computerWinCount = 0;
-            drawCount = 0;*/
-        }
-    
+function endGame () {
+    resetButton.classList.remove("display-hide");
+        disableButton();
+        hideGraphic();
+        start.removeEventListener("click", selectStart);
+        start.style.pointerEvents = "none";
+}
