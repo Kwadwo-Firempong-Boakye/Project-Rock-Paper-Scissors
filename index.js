@@ -10,6 +10,7 @@ let playerScore = document.querySelector("#playerScore");
 let robotScore = document.querySelector("#robotScore");
 let container = document.querySelector(".container");
 let resetButton = document.querySelector(".reset");
+let rules = document.querySelector(".rules");
 
 let youChose = document.querySelector(".youChose");
 let youChoseImage = document.querySelector(".youChose").previousElementSibling;
@@ -357,9 +358,10 @@ function Game () {
 }
 
 function endGame () {
+    rules.classList.add("display-hide");
     resetButton.classList.remove("display-hide");
-        disableButton();
-        hideGraphic();
-        start.removeEventListener("click", selectStart);
-        start.style.pointerEvents = "none";
+    disableButton();
+    hideGraphic();
+    start.removeEventListener("click", selectStart);
+    start.style.pointerEvents = "none";
 }
